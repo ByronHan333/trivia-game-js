@@ -73,6 +73,8 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>Trivia</h1>
+        <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my LinkedIn</a>
+        <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visiti my GitHub</a>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className='start' onClick={startTrivia}>
             Start

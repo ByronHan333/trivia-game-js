@@ -67,4 +67,10 @@ export const Wrapper = styled.div`
   .start {
     max-width: 200px;
   }
+
+  a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+  }
 `;
