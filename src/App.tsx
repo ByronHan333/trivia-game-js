@@ -23,6 +23,7 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [gameStart, setGameStart] = useState(true);
   const [difficulty, setDifficulty] = useState(0);
   const arr = ['Easy', 'Medium', 'Hard']
 
@@ -30,9 +31,15 @@ const App: React.FC = () => {
     setDifficulty(currentDifficulty => (currentDifficulty+1)%3)
   }
 
+  const handleRestart = () => {
+    setGameStart(true)
+    setGameOver(false)
+  }
+
   const startTrivia = async (input: number) => {
     setLoading(true);
     setGameOver(false);
+    setGameStart(false);
     let diff;
     if (input === 0) {
       diff = Difficulty.EASY
@@ -105,10 +112,23 @@ const App: React.FC = () => {
         <h1>Trivia</h1>
         <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my LinkedIn</a>
         <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my GitHub</a>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+        {userAnswers.length === TOTAL_QUESTIONS ? (
+          // <button className='start' onClick={handleRestart}>
+          //   Restart
+          // </button>
           <>
             <button className='start' onClick={handleDifficulty}>
-            Difficulty: {arr[difficulty]}
+              Difficulty: {arr[difficulty]}
+            </button>
+            <button className='start' onClick={()=>startTrivia(difficulty)}>
+              Restart
+            </button>
+          </>
+        ) : null}
+        {gameStart && (gameOver || userAnswers.length === TOTAL_QUESTIONS) ? (
+          <>
+            <button className='start' onClick={handleDifficulty}>
+              Difficulty: {arr[difficulty]}
             </button>
             <button className='start' onClick={()=>startTrivia(difficulty)}>
               Start
