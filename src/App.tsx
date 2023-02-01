@@ -68,6 +68,14 @@ const App: React.FC = () => {
     }
   };
 
+  const Instruction = () => {
+    return (
+      <div className='instruction-card'>
+        <h2>Instructions</h2>
+      </div>
+    )
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -76,9 +84,12 @@ const App: React.FC = () => {
         <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my LinkedIn</a>
         <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visiti my GitHub</a>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className='start' onClick={startTrivia}>
-            Start
-          </button>
+          <>
+            <button className='start' onClick={startTrivia}>
+              Start
+            </button>
+            <Instruction />
+          </>
         ) : null}
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
         {loading ? <p>Loading Questions...</p> : null}

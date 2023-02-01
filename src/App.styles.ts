@@ -52,6 +52,10 @@ export const Wrapper = styled.div`
     margin: 20px;
   }
 
+  .instruction-card {
+    border: 1px solid white
+  }
+
   .start, .next {
     cursor: pointer;
     background-color: #F5F5DC
