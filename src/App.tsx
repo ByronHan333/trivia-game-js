@@ -24,9 +24,9 @@ const App: React.FC = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [gameStart, setGameStart] = useState(true);
-  const [difficulty, setDifficulty] = useState(0);
   const arr = ['Easy', 'Medium', 'Hard']
 
+  const [difficulty, setDifficulty] = useState(0);
   const handleDifficulty = () => {
     setDifficulty(currentDifficulty => (currentDifficulty+1)%3)
   }
@@ -48,8 +48,6 @@ const App: React.FC = () => {
     } else {
       diff = Difficulty.HARD
     }
-    console.log(diff)
-    console.log(arr[input])
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
       diff
@@ -110,8 +108,8 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>Trivia</h1>
-        <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my LinkedIn</a>
-        <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my GitHub</a>
+        <a href="https://www.linkedin.com/in/ziyuan-byron-han/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn</a>
+        <a href="https://github.com/ByronHan333" target="_blank" rel="noopener noreferrer">Visit my GitHub</a>
         {userAnswers.length === TOTAL_QUESTIONS ? (
           // <button className='start' onClick={handleRestart}>
           //   Restart
