@@ -23,13 +23,29 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [difficulty, setDifficulty] = useState(0);
+  const arr = ['Easy', 'Medium', 'Hard']
 
-  const startTrivia = async () => {
+  const handleDifficulty = () => {
+    setDifficulty(currentDifficulty => (currentDifficulty+1)%3)
+  }
+
+  const startTrivia = async (input: number) => {
     setLoading(true);
     setGameOver(false);
+    let diff;
+    if (input === 0) {
+      diff = Difficulty.EASY
+    } else if (input === 1) {
+      diff = Difficulty.MEDIUM
+    } else {
+      diff = Difficulty.HARD
+    }
+    console.log(diff)
+    console.log(arr[input])
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
-      Difficulty.EASY
+      diff
     );
     setQuestions(newQuestions);
     setScore(0);
@@ -71,7 +87,13 @@ const App: React.FC = () => {
   const Instruction = () => {
     return (
       <div className='instruction-card'>
-        <h2>Instructions</h2>
+        <h3>There are total of 10 questions.</h3>
+        <h3>Read the Question.</h3>
+        <h3>Then select a correct answer from the four choices.</h3>
+        <h3>You gain 1 point for a correct answer.</h3>
+        <h3>You will not lose any points for a wrong answer.</h3>
+        <h3>Set Difficulty button will set difficulty of the questions.</h3>
+        <h3>Click Start to play.</h3>
       </div>
     )
   }
@@ -82,10 +104,13 @@ const App: React.FC = () => {
       <Wrapper>
         <h1>Trivia</h1>
         <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my LinkedIn</a>
-        <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visiti my GitHub</a>
+        <a href="https://www.linkedin.com/in/ziyuan-byron-han/">Visit my GitHub</a>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <>
-            <button className='start' onClick={startTrivia}>
+            <button className='start' onClick={handleDifficulty}>
+            Difficulty: {arr[difficulty]}
+            </button>
+            <button className='start' onClick={()=>startTrivia(difficulty)}>
               Start
             </button>
             <Instruction />

@@ -53,8 +53,18 @@ export const Wrapper = styled.div`
   }
 
   .instruction-card {
-    border: 1px solid white
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: #F5F5DC;
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
   }
+
+
 
   .start, .next {
     cursor: pointer;
@@ -69,7 +79,7 @@ export const Wrapper = styled.div`
   }
 
   .start {
-    max-width: 200px;
+    max-width: 300px;
   }
 
   a {
